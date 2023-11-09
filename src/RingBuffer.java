@@ -3,6 +3,7 @@ public class RingBuffer {
 	
 	private int first = 0;
 	private int last = 0;
+	private int size = 0; 
 	private double[] values;
 
 	public RingBuffer(int capacity)
@@ -12,16 +13,12 @@ public class RingBuffer {
 	
 	public int size()
 	{
-		if(first < last)
-		{
-			return last - first; 
-		}
-		return values.length - first + last;
+		return size;
 	}
 	
 	public boolean isEmpty()
 	{
-		return (size() == 0);
+		return (size == 0);
 	}
 	
 	public boolean isFull()
@@ -31,6 +28,7 @@ public class RingBuffer {
 	
 	public void enqueue(double x)
 	{
+		
 		if (!isFull()) //checks if the array is not full
 		{
 			values[last] = x; //enqueue x to last
@@ -42,19 +40,21 @@ public class RingBuffer {
 			{
 				last++; //increments last
 			}
+			size++; 
 		}
-		if (size() == 0) //checks if the array is empty
-		{
-			values[first] = x; //sets x in the first index
-		}
-		if (isFull())
+		else
 		{
 			throw new IllegalStateException("Buffer is full");
 		}
+		
 	}
 	
 	public double dequeue()
 	{
+		if (isEmpty())
+		{
+			throw new IllegalStateException("Buffer is empty");
+		}
 		double returning = values[first]; 
 		values[first] = 0; 
 		first ++; 
@@ -62,6 +62,7 @@ public class RingBuffer {
 		{
 			first = 0; 
 		}
+		size --; 
 		return returning; 
 		
 	}
@@ -74,15 +75,20 @@ public class RingBuffer {
 	
 	public String toString()
 	{
-		
-		String returning = ""; 
-		int start = first; 
-		while(start != last)
+		if(isEmpty())
 		{
-			returning += values[start]; 
+			System.out.println("here");
+			return "[]";
+		}
+		String returning = ""+values[first]; 
+		int start = first; 
+		while(start != last -1)
+		{
+			 
 			start = (start + 1) % values.length; 
+			returning += ", " + values[start];
 
 		}
-		return returning; 
+		return "[" + returning + "]"; 
 	}
 }
