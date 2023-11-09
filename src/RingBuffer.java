@@ -31,7 +31,26 @@ public class RingBuffer {
 	
 	public void enqueue(double x)
 	{
-		
+		if (!isFull()) //checks if the array is not full
+		{
+			values[last] = x; //enqueue x to last
+			if (last + 1 == values.length) //checks if last needs to be wrapped
+			{
+				last = 0; //wraps last to index 0
+			}
+			else //no wrap is needed
+			{
+				last++; //increments last
+			}
+		}
+		if (values.size() == 0) //checks if the array is empty
+		{
+			values[first] = x; //sets x in the first index
+		}
+		if (isFull())
+		{
+			throw new IllegalStateException("Buffer is full");
+		}
 	}
 	
 	public double dequeue()
