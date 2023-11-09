@@ -43,7 +43,7 @@ public class RingBuffer {
 				last++; //increments last
 			}
 		}
-		if (values.size() == 0) //checks if the array is empty
+		if (size() == 0) //checks if the array is empty
 		{
 			values[first] = x; //sets x in the first index
 		}
