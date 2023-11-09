@@ -1,6 +1,8 @@
 
 public class RingBuffer {
 	
+	private int first = 0;
+	private int last;
 	private int[] values;
 
 	public RingBuffer(int capacity)
@@ -15,12 +17,12 @@ public class RingBuffer {
 	
 	public boolean isEmpty()
 	{
-		
+		return (size() == 0);
 	}
 	
 	public boolean isFull()
 	{
-		
+		return (size() == values.length);
 	}
 	
 	public void enqueue(double x)
