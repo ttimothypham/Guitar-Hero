@@ -77,7 +77,6 @@ public class RingBuffer {
 	{
 		if(isEmpty())
 		{
-			System.out.println("here");
 			return "[]";
 		}
 		String returning = ""+values[first]; 
