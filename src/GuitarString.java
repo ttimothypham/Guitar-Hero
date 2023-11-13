@@ -35,8 +35,11 @@ public class GuitarString {
 		}
 	}
 	
-	public void tic() //not finished
+	public void tic() 
 	{
+		double sample = ringBuffer.dequeue(); //dequeue the first sample of the buffer
+		double scaledAverage = .994 * .5(sample + ringBuffer.peek()); // the average of the first two samples scaled by the energy decay factor of 0.994
+		ringBuffer.enqueue(scaledAverage); //enqueues the scaledAverage
 		time++;
 	}
 	
