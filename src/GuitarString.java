@@ -1,7 +1,7 @@
 
 public class GuitarString {
 	
-	private RingBuffer ringBuffer; 
+	public RingBuffer ringBuffer; 
 	private int time; //variable to count total number of times tic() is called
 	private int N; //variable for the capacity of the RingBuffer
 	
