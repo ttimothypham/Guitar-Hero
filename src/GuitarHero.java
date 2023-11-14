@@ -24,24 +24,36 @@ public class GuitarHero {
 	private static void play(GuitarString[] array)
 	{
 		// the user types this character
-        char key = StdDraw.nextKeyTyped();
 		while (true)
 		{
+			double sample = 0.0;
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped())
             {
-                // pluck the corresponding string
-                array[keyboard.indexOf(key)].pluck();
+            	String key = "" + StdDraw.nextKeyTyped();
+            	if (keyboard.contains(key))
+            	{
+            		// pluck the corresponding string
+            		array[keyboard.indexOf(key)].pluck();
+            	}
                 
             }
             // compute the superposition of the samples
-            double sample = array[keyboard.indexOf(key)].sample();
+            for (int i = 0; i < array.length; i++)
+            {
+            	sample = sample + array[i].sample();
+            }
 
             // send the result to standard audio
             StdAudio.play(sample);
-
+            
             // advance the simulation of each guitar string by one step
-            array[keyboard.indexOf(key)].tic();
+            for (int idx = 0; idx < array.length; idx++)
+            {
+            	array[idx].tic();
+            }
+            
+            
         }
 	}
 

@@ -29,7 +29,7 @@ public class GuitarString {
 	{
 		for (int i = 0; i < N; i++)
 		{
-			double random = (Math.random() * 1) - .5; //random num from -.5 to .5
+			double random = (Math.random() - .5); //random num from -.5 to .5
 			ringBuffer.dequeue(); 
 			ringBuffer.enqueue(random); //enqueue the random num in the RingBuffer
 		}
