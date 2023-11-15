@@ -36,6 +36,7 @@ public class GuitarHero {
             if (StdDraw.hasNextKeyTyped())
             {
             	String key = "" + StdDraw.nextKeyTyped();
+            	StdDraw.clear();
             	if (keyboard.contains(key))
             	{
             		// pluck the corresponding string

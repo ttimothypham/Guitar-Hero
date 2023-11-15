@@ -10,18 +10,18 @@ public class GuitarString {
 		double desiredCapacity = 44100 / frequency;
 		N = (int) Math.ceil(desiredCapacity); //rounds the desired capacity up
 		ringBuffer = new RingBuffer(N); //creates new RingBuffer
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < N; i++) //iterate thru N
 		{
-			ringBuffer.enqueue(0);
+			ringBuffer.enqueue(0); //enqueues 0 onto the ringBuffer
 		}
 	}
 	
 	GuitarString (double[] init)
 	{
-		ringBuffer = new RingBuffer(init.length);
-		for (int i = 0; i < init.length; i++)
+		ringBuffer = new RingBuffer(init.length); //creates ringBuffer based on array length
+		for (int i = 0; i < init.length; i++) //iterates thru array length
 		{
-			ringBuffer.enqueue(init[i]);
+			ringBuffer.enqueue(init[i]); //enqueues the values of array onto the ringBUffer
 		}
 	}
 	
