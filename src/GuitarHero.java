@@ -1,4 +1,3 @@
-
 public class GuitarHero {
 	
 	public static GuitarString[] array;
@@ -23,9 +22,15 @@ public class GuitarHero {
 	
 	private static void play(GuitarString[] array)
 	{
+		String[] notes = new String[]{"q", "w", "r"};
+		int counter = 1; 
+		StdDraw.text(.2 ,.2 , notes[0]);
+		
 		// the user types this character
 		while (true)
 		{
+			
+	       
 			double sample = 0.0;
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped())
@@ -35,6 +40,17 @@ public class GuitarHero {
             	{
             		// pluck the corresponding string
             		array[keyboard.indexOf(key)].pluck();
+            		System.out.println(key); 
+            		System.out.println(notes[counter - 1]);
+            		if(key.equals("" + notes[counter - 1]))
+            		{    
+                		StdDraw.clear();
+	            		StdDraw.text(.2 ,.2 , notes[counter]);
+	         	        if(counter + 1 < notes.length) {
+	         	        	counter ++; 
+	         	        }
+            		}
+
             	}
                 
             }
@@ -46,6 +62,7 @@ public class GuitarHero {
 
             // send the result to standard audio
             StdAudio.play(sample);
+            
             
             // advance the simulation of each guitar string by one step
             for (int idx = 0; idx < array.length; idx++)
